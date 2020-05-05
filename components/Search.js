@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 
-const Search = () => {
+const Search = ({navigation:{navigate}}) => {
     const [state, setState] = useState({ username: '', loading: false, error: false });
     const { username, loading, error } = state;
 
@@ -18,6 +18,7 @@ const Search = () => {
             .then(response => response.json())
             .then(data => {
                 setState((prevState) => ({ ...prevState, username: data, loading: false }));
+                navigate('DASHBOARD',{user:data});
             })
             .catch(error => {
                 setState((prevState) => ({ ...prevState, loading: false, error: true }));
