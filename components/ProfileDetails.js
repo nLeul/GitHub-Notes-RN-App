@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
 import Separator from 'components/Separator';
 import Badge from 'components/Badge';
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ route: { params: { user } } }) => {
+    // console.log(user)
+
+
     const detailsArr = ['company', 'location', 'followers', 'following', 'email', 'bio'];
 
-    return (null)
+    const details = detailsArr.map((item, index) => {
+        return (
+            <View key={index} style={styles.container}>
+                <Text style={styles.rowTitle}>{item.toUpperCase()}</Text>
+                <Text style={styles.rowContent}>{user[item]}</Text>
+                <Separator />
+            </View>
+
+        )
+    })
+
+    return (
+        <ScrollView>
+            <Badge userInfo={user} />
+            {details}
+        </ScrollView>
+    )
 };
 
 const styles = StyleSheet.create({
