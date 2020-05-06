@@ -5,7 +5,7 @@ import Separator from 'components/Separator';
 import Badge from 'components/Badge';
 
 const ProfileDetails = ({ route: { params: { user } } }) => {
-    // console.log(user)
+ 
 
 
     const detailsArr = ['company', 'location', 'followers', 'following', 'email', 'bio'];
