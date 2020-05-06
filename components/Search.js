@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 
-const Search = ({navigation:{navigate}}) => {
+const Search = ({ navigation: { navigate } }) => {
     const [state, setState] = useState({ username: '', loading: false, error: false });
     const { username, loading, error } = state;
+
 
 
     const handleText = (username) => {
@@ -18,7 +19,7 @@ const Search = ({navigation:{navigate}}) => {
             .then(response => response.json())
             .then(data => {
                 setState((prevState) => ({ ...prevState, username: data, loading: false }));
-                navigate('DASHBOARD',{user:data});
+                navigate('DASHBOARD', { user: data });
             })
             .catch(error => {
                 setState((prevState) => ({ ...prevState, loading: false, error: true }));
@@ -32,7 +33,9 @@ const Search = ({navigation:{navigate}}) => {
                 style={styles.searchInput}
                 placeholder="Github username"
                 onChangeText={handleText}
-                value={state.username}
+                value={username}
+                autoFocus={true}
+                autoCapitalize='none'
 
             />
             <TouchableOpacity
